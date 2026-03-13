@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太平年·钱弘俶 INFJ 小红书杂志风海报</title>
+    <style>
+        /* ----- CSS 样式定义 ----- */
+        :root {
+            /* 配色方案：古朴、温润、有书卷气 */
+            --bg-body: #e6e1d8;       /* 浏览器背景 */
+            --bg-card: #faf7f2;       /* 内容卡片米白背景 */
+            --text-main: #2b221b;     /* 主要文字深褐 */
+            --text-sub: #665c54;      /* 次要文字浅褐 */
+            --accent-gold: #a68340;   /* 强调色：沉稳金 */
+            --accent-red: #943c34;    /* 强调色：朱砂红 */
+            --tag-bg: #ece6da;        /* 标签背景色 */
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-body);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* 优先使用宋体增强古韵，无衬线体保底 */
+            font-family: "Songti SC", "Noto Serif SC", "PingFang SC", "Microsoft YaHei", serif;
+        }
+
+        /* 海报主体容器：模拟手机竖屏比例 */
+        .poster-container {
+            width: 100%;
+            max-width: 450px; /* 适合小红书的宽度 */
+            background-color: var(--bg-card);
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 上半部分：剧照图片区域 --- */
+        .image-header-container {
+            width: 100%;
+            height: 380px; /* 固定高度，确保版式稳定 */
+            position: relative;
+            background-color: #4a4035; /* 图片加载失败时的默认底色 */
+            overflow: hidden;
+        }
+
+        /* 剧照占位符，请按说明替换 */
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            /* 【重要】请将下方的 url('') 中的内容替换为您本地图片的路径 */
+            background-image: url('https://img0.baidu.com/it/u=2902429166,2474287667&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1200'); 
+            /* 示例：background-image: url('images/qianhongchu.jpg'); */
+            
+            background-size: cover;
+            background-position: center top;
+            position: relative;
+        }
+
+        /* 图片未加载时的提示文字 (如果图片正常加载，这行文字会被挡住) */
+        .hero-image::after {
+            content: "";
+            white-space: pre-wrap;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            font-size: 14px;
+            font-family: sans-serif;
+            z-index: 0;
+        }
+
+        /* 图片上的装饰性渐变，让文字更清晰 */
+        .image-overlay-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(43, 34, 27, 0.8) 0%, rgba(43, 34, 27, 0) 100%);
+            z-index: 1;
+        }
+
+        /* 图片上的标题信息 */
+        .header-info-on-image {
+            position: absolute;
+            bottom: 20px;
+            left: 25px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .series-tag {
+            background-color: var(--accent-red);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: sans-serif;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 2px;
+            font-family: "Songti SC", serif;
+        }
+
+        /* --- 下半部分：内容卡片区域 --- */
+        .content-body {
+            padding: 30px 25px;
+            background-color: var(--bg-card);
+            position: relative;
+            /* 稍微向上重叠一点图片，增加层次感 */
+            margin-top: -20px;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            z-index: 3;
+        }
+
+        /* 人格标签栏 */
+        .mbti-badge-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .mbti-main-badge {
+            background-color: var(--accent-gold);
+            color: #fff;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 16px;
+            margin-right: 10px;
+            font-family: sans-serif;
+        }
+        .mbti-sub-badge {
+            color: var(--accent-gold);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* 金句区域 */
+        .quote-box {
+            border-left: 4px solid var(--accent-red);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        .quote-text {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin: 0;
+            font-family: "Songti SC", serif;
+        }
+
+        /* 简介文本 */
+        .intro-text {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--text-sub);
+            text-align: justify;
+            margin-bottom: 30px;
+            font-family: sans-serif; /* 正文用无衬线体更易读 */
+        }
+        .highlight {
+            color: var(--accent-red);
+            font-weight: 600;
+            border-bottom: 1px dashed rgba(148, 60, 52, 0.3);
+        }
+
+        /* MBTI 详情网格 */
+        .mbti-grid-title {
+            text-align: center;
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            position: relative;
+        }
+        .mbti-grid-title::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-gold);
+            margin: 8px auto 0;
+            opacity: 0.4;
+        }
+
+        .mbti-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        /* 单个MBTI条目设计 */
+        .mbti-item {
+            background-color: var(--tag-bg);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid rgba(166, 131, 64, 0.1);
+        }
+
+        .mbti-letter-box {
+            background-color: var(--text-main);
+            color: var(--accent-gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 900;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-family: sans-serif;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .mbti-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 15px;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .mbti-content p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-sub);
+            text-align: justify;
+            font-family: sans-serif;
+        }
+
+        /* 底部署名 */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: var(--accent-gold);
+            opacity: 0.6;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="poster-container">
+    
+    <div class="image-header-container">
+        <div class="hero-image"></div>
+        <div class="image-overlay-gradient"></div>
+        <div class="header-info-on-image">
+            <span class="series-tag">电视剧《太平年》</span>
+            <h1 class="main-title">钱弘俶</h1>
+        </div>
+    </div>
+
+    <div class="content-body">
+        
+        <div class="mbti-badge-bar">
+            <div class="mbti-main-badge">INFJ</div>
+            <div class="mbti-sub-badge">提倡者 (Advocate)</div>
+        </div>
+
+        <div class="quote-box">
+            <p class="quote-text">“是非是有的，一定是有的。千秋史册在上，江山黎庶在下，此事万古不易。”</p>
+        </div>
+
+        <div class="intro-text">
+            五代十国，礼崩乐坏。十二岁混迹市井做鱼脍的少年，被命运推上王座之后，拉不开弓，打不赢仗。但他用一种近乎笨拙的温柔扛住了一整个乱世，最后亲手终结了自家的王朝——“吾不忍以一姓之荣，陷万民于水火。”<br>
+            <span class="highlight">太平年三字，他拿一生的血泪写就。</span>
+        </div>
+
+        <div class="mbti-grid-title">人格深度解析</div>
+        <div class="mbti-grid">
+            <div class="mbti-item">
+                <div class="mbti-letter-box">I</div>
+                <div class="mbti-content">
+                    <h3>内向 | Introverted</h3>
+                    <p>坐拥吴越半壁江山的国主，心底认同的身份是市井里做鱼脍的少年。权力的聚光灯打在他身上，他的能量却始终向内生长。</p>
+                </div>
+            </div>
+            <div class="mbti-item">
+                <div class="mbti-letter-box">N</div>
+                <div class="mbti-content">
+                    <h3>直觉 | Intuitive</h3>
+                    <p>所有人盯着眼前的棋局，他盯着棋局之外的那个终局。他已经看到了天下终将一统的走向，剩下的问题只有流多少血。</p>
+                </div>
+            </div>
+            <div class="mbti-item">
+                <div class="mbti-letter-box">F</div>
+                <div class="mbti-content">
+                    <h3>情感 | Feeling</h3>
+                    <p>可以忍住权臣的羞辱去做长线博弈，却在有人践踏他珍视的生命时瞬间失控。触发他的从来不是利益，是人。</p>
+                </div>
+            </div>
+            <div class="mbti-item">
+                <div class="mbti-letter-box">J</div>
+                <div class="mbti-content">
+                    <h3>判断 | Judging</h3>
+                    <p>瓦解权力花了两年。全程保持同一个战略方向，没有一步走偏。他挣扎的从来是怎么平衡代价，方向本身从未松动过。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">Designed for 小红书 · @世另我MBTI</div>
+
+    </div>
+</div>
+
+</body>
+</html>
