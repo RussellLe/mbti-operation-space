@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小红书古风MBTI圆形群像封面</title>
+<style>
+    /* 全局重置 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        background: #0a0a0a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "PingFang SC", "Microsoft Yahei", sans-serif;
+        overflow: hidden;
+    }
+
+    /* 封面容器 - 适配小红书竖屏比例 (约 3:4 到 9:16 之间) */
+    .xhs-container {
+        position: relative;
+        width: 100%;
+        max-width: 450px; /* 控制最大宽度方便桌面预览 */
+        aspect-ratio: 3 / 4.2;
+        background: radial-gradient(circle at center, #2b2b2b 0%, #000000 100%);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        border: 1px solid #333;
+    }
+
+    /* 背景氛围元素 - 营造深度感 */
+    .bg-atmosphere {
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background-image: url('https://tse2.mm.bing.net/th/id/OIP.0TAhIhAFNit2VhWqjOzwYAHaLH?w=474&h=474&c=7&p=0'); /* 借用一张图做模糊背景 */
+        background-size: cover;
+        filter: blur(30px) brightness(0.3) saturate(0.5);
+        opacity: 0.4;
+        z-index: 1;
+    }
+
+    /* 装饰性金色轨道环 */
+    .orbit-ring-1 {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75%; height: 55%;
+        border: 1px dashed rgba(212, 175, 55, 0.3); /* 黯淡金 */
+        border-radius: 50%;
+        z-index: 2;
+    }
+    .orbit-ring-2 {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 85%; height: 65%;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: 50%;
+        z-index: 2;
+    }
+
+    /* 中心标题区 */
+    .center-hub {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 150px; height: 150px;
+        background: radial-gradient(circle, rgba(40,40,40,0.9) 20%, rgba(0,0,0,0.95) 80%);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 10;
+        border: 2px solid rgba(212, 175, 55, 0.6);
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(0,0,0,0.8);
+    }
+    .center-hub h1 {
+        color: #d4af37; /* 金色 */
+        font-size: 26px;
+        line-height: 1.2;
+        font-family: "KaiTi", "STKaiti", serif; /* 楷体更有古韵 */
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        margin-bottom: 5px;
+    }
+    .center-hub h2 {
+        color: #ccc;
+        font-size: 14px;
+        font-weight: normal;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    /* 角色圆形容器组件 */
+    .char-item {
+        position: absolute;
+        z-index: 5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100px;
+    }
+
+    /* 圆形头像框 */
+    .img-frame {
+        width: 90px; height: 90px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #1a1a1a;
+        box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.5), 0 8px 15px rgba(0,0,0,0.4); /* 双层边框：内黑外金 */
+        position: relative;
+        background: #000;
+    }
+    .img-frame img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transform: scale(1.05); /* 轻微放大避免白边 */
+    }
+
+    /* 角色信息区 */
+    .char-info {
+        text-align: center;
+        margin-top: -12px; /* 向上重叠一点头像 */
+        position: relative;
+        z-index: 6;
+    }
+    .char-name {
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px #000, -1px -1px 2px #000;
+        margin-bottom: 4px;
+        font-family: "KaiTi", serif;
+    }
+    .mbti-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 800;
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(4px); /* 磨砂玻璃感 */
+    }
+
+    /* MBTI 颜色分类 (沿用之前的逻辑，但加了渐变) */
+    .mbti-green { background: linear-gradient(135deg, #428a5a, #509E6B); }
+    .mbti-purple { background: linear-gradient(135deg, #6a4c7d, #88629E); }
+    .mbti-yellow { background: linear-gradient(135deg, #cba035, #E2B240); color: #2a2205; }
+    .mbti-blue { background: linear-gradient(135deg, #3a758f, #4B91AD); }
+
+    /* --- 核心：6个角色的绝对定位布局 --- */
+    /* 想象一个时钟表盘 */
+    
+    /* 左上 (约10点方向) - 钱弘俶 */
+    .pos-1 { top: 6%; left: 8%; }
+    
+    /* 右上 (约2点方向) - 孙太真 */
+    .pos-2 { top: 6%; right: 8%; }
+
+    /* 左中 (约9点方向，稍微偏下) - 冯道 */
+    .pos-3 { top: 40%; left: 2%; transform: scale(1.1); /* 中间两个稍微大一点突出层次 */ z-index: 6;}
+
+    /* 右中 (约3点方向，稍微偏下) - 赵匡胤 */
+    .pos-4 { top: 40%; right: 2%; transform: scale(1.1); z-index: 6;}
+
+    /* 左下 (约7点方向) - 水丘昭券 */
+    .pos-5 { bottom: 8%; left: 12%; }
+
+    /* 右下 (约5点方向) - 郭荣 */
+    .pos-6 { bottom: 8%; right: 12%; }
+
+</style>
+</head>
+<body>
+
+<div class="xhs-container">
+    <div class="bg-atmosphere"></div>
+    <div class="orbit-ring-1"></div>
+    <div class="orbit-ring-2"></div>
+
+    <div class="center-hub">
+        <h1>大宋<br>群像谱</h1>
+        <h2>MBTI图鉴</h2>
+    </div>
+
+    <div class="char-item pos-1">
+        <div class="img-frame">
+            <img src="https://mz2.eastday.com/images/17510399/70b824769bbf43239c3013380bda228f.jpeg" alt="钱弘俶">
+        </div>
+        <div class="char-info">
+            <div class="char-name">钱弘俶</div>
+            <div class="mbti-pill mbti-green">INFJ</div>
+        </div>
+    </div>
+
+    <div class="char-item pos-2">
+        <div class="img-frame">
+            <img src="https://n.sinaimg.cn/sinakd20260124ac/350/w460h690/20260124/593e-29794c6efdacb93ffadf855263b73a0e.jpg" alt="孙太真">
+        </div>
+        <div class="char-info">
+            <div class="char-name">孙太真</div>
+            <div class="mbti-pill mbti-green">ENFJ</div>
+        </div>
+    </div>
+
+     <div class="char-item pos-3">
+        <div class="img-frame">
+            <img src="https://tse1.mm.bing.net/th/id/OIP.YGBiicRtot_lLOxhVNpDjAHaLH?w=474&h=474&c=7&p=0" alt="冯道">
+        </div>
+        <div class="char-info">
+            <div class="char-name">冯道</div>
+            <div class="mbti-pill mbti-purple">INTP</div>
+        </div>
+    </div>
+
+    <div class="char-item pos-4">
+        <div class="img-frame">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.0TAhIhAFNit2VhWqjOzwYAHaLH?w=474&h=474&c=7&p=0" alt="赵匡胤">
+        </div>
+        <div class="char-info">
+            <div class="char-name">赵匡胤</div>
+            <div class="mbti-pill mbti-yellow">ESTP</div>
+        </div>
+    </div>
+
+    <div class="char-item pos-5">
+        <div class="img-frame">
+            <img src="https://k.sinaimg.cn/n/sinakd20260127s/614/w571h843/20260127/1aca-f8c996c3ade96bceee4925aa6e171c68.jpg/w700d1q75cms.jpg" alt="水丘昭券">
+        </div>
+        <div class="char-info">
+            <div class="char-name">水丘昭券</div>
+            <div class="mbti-pill mbti-blue">ISTJ</div>
+        </div>
+    </div>
+
+    <div class="char-item pos-6">
+        <div class="img-frame">
+            <img src="https://k.sinaimg.cn/n/sinakd20260127s/456/w491h765/20260127/b131-b2633f0002e4c8f4bc55ffe913ce4720.jpg/w700d1q75cms.jpg" alt="郭荣">
+        </div>
+        <div class="char-info">
+            <div class="char-name">郭荣</div>
+            <div class="mbti-pill mbti-purple">ENTJ</div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
