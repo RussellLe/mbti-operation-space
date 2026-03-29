@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MBTI 人物群像毛玻璃无缝版 - 大字号</title>
+  <title>逐玉 MBTI 人物群像</title>
   <style>
     :root {
       --ink: #2f2430;
@@ -20,12 +20,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #1a1a1a; /* 仅供预览页面使用，海报本身无外框 */
+      background: #1a1a1a;
       font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
       color: var(--ink);
     }
 
-    /* 严格锁定 540x960 比例，无任何外圈留白 */
     .poster-container {
       width: 540px;
       aspect-ratio: 9 / 16;
@@ -34,14 +33,13 @@
       background: #000;
     }
 
-    /* 100% 无缝九宫格 */
     .collage {
       width: 100%;
       height: 100%;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      gap: 0; 
+      gap: 0;
     }
 
     .still-card {
@@ -58,56 +56,47 @@
       object-fit: cover;
       object-position: center;
       filter: saturate(0.88) contrast(1.02) brightness(0.96);
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .still-card:hover img {
-      transform: scale(1.06);
-    }
-
-    /* 核心：放大并加厚毛玻璃标签的质感 */
     .label {
       position: absolute;
       left: 10px;
       right: 10px;
-      bottom: 14px; /* 稍微向上抬一点点，显得更舒展 */
+      bottom: 14px;
       z-index: 5;
-      padding: 12px 4px 10px; /* 增加上下内边距，给大字体留出呼吸感 */
+      padding: 12px 4px 10px;
       border-radius: 12px;
-      background: linear-gradient(180deg, rgba(58, 36, 40, 0.35), rgba(36, 20, 23, 0.70)); /* 稍微加深底色，让白色大字更清晰 */
+      background: linear-gradient(180deg, rgba(58, 36, 40, 0.35), rgba(36, 20, 23, 0.70));
       border: 1px solid rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-      
+
       color: rgba(255, 248, 242, 0.98);
       text-align: center;
       pointer-events: none;
     }
 
-    /* 角色名称放大 */
     .label .cn {
-      font-size: 20px; /* 从 14px 增大到 20px */
+      font-size: 20px;
       letter-spacing: 2px;
       font-weight: 700;
       display: block;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); /* 增强文字阴影，更有立体感 */
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
 
-    /* MBTI 放大 */
     .label .mbti {
       display: block;
-      margin-top: 6px; /* 增加与中文名的间距 */
-      font-size: 13px; /* 从 10px 增大到 13px */
+      margin-top: 6px;
+      font-size: 13px;
       letter-spacing: 2.5px;
-      color: #f2e1cc; /* 颜色略微提亮，增加对比度 */
+      color: #f2e1cc;
       font-family: sans-serif;
-      font-weight: bold; /* 加粗 MBTI 字母 */
+      font-weight: bold;
       text-transform: uppercase;
       opacity: 0.95;
     }
 
-    /* 全局胶片颗粒感 */
     .grain {
       position: absolute;
       inset: 0;
@@ -128,66 +117,66 @@
 
     <div class="collage">
       <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop" alt="角色1">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/樊长玉.jpg" alt="樊长玉" style="object-position: 40.7% 50.6%">
         <div class="label">
-          <span class="cn">达西</span>
+          <span class="cn">樊长玉</span>
+          <span class="mbti">ESFP</span>
+        </div>
+      </div>
+      <div class="still-card">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/谢征.jpg" alt="谢征" style="object-position: 52.0% 32.1%">
+        <div class="label">
+          <span class="cn">谢征</span>
           <span class="mbti">INTJ</span>
         </div>
       </div>
       <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop" alt="角色2">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/随元青.jpg" alt="随元青" style="object-position: 42.6% 30.8%">
         <div class="label">
-          <span class="cn">伊丽莎白</span>
-          <span class="mbti">ENFP</span>
+          <span class="cn">随元青</span>
+          <span class="mbti">ESTP</span>
         </div>
       </div>
       <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop" alt="角色3">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/齐旻.jpg" alt="齐旻" style="object-position: 72.3% 35.3%">
         <div class="label">
-          <span class="cn">韩商言</span>
-          <span class="mbti">INTJ</span>
-        </div>
-      </div>
-      <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop" alt="角色4">
-        <div class="label">
-          <span class="cn">佟年</span>
-          <span class="mbti">ENFP</span>
-        </div>
-      </div>
-      <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&h=500&fit=crop" alt="角色5">
-        <div class="label">
-          <span class="cn">东方青苍</span>
-          <span class="mbti">ENTJ</span>
-        </div>
-      </div>
-      <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop" alt="角色6">
-        <div class="label">
-          <span class="cn">小兰花</span>
-          <span class="mbti">INFP</span>
-        </div>
-      </div>
-      <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop" alt="角色7">
-        <div class="label">
-          <span class="cn">梅长苏</span>
+          <span class="cn">齐旻</span>
           <span class="mbti">INFJ</span>
         </div>
       </div>
       <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=500&fit=crop" alt="角色8">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/俞浅浅.jpg" alt="俞浅浅" style="object-position: 57.7% 43.6%">
         <div class="label">
-          <span class="cn">霓凰</span>
-          <span class="mbti">ESTJ</span>
+          <span class="cn">俞浅浅</span>
+          <span class="mbti">ENTP</span>
         </div>
       </div>
       <div class="still-card">
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop" alt="角色9">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/李怀安.jpg" alt="李怀安" style="object-position: 49.7% 34.2%">
         <div class="label">
-          <span class="cn">李逍遥</span>
-          <span class="mbti">ESTP</span>
+          <span class="cn">李怀安</span>
+          <span class="mbti">ISFJ</span>
+        </div>
+      </div>
+      <div class="still-card">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/宋砚.jpg" alt="宋砚" style="object-position: 35.9% 45.8%">
+        <div class="label">
+          <span class="cn">宋砚</span>
+          <span class="mbti">ISFJ</span>
+        </div>
+      </div>
+      <div class="still-card">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/魏严.jpg" alt="魏严" style="object-position: 46.8% 48.1%">
+        <div class="label">
+          <span class="cn">魏严</span>
+          <span class="mbti">ENTJ</span>
+        </div>
+      </div>
+      <div class="still-card">
+        <img src="/Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/赵大娘.jpg" alt="赵大娘" style="object-position: 39.9% 30.3%">
+        <div class="label">
+          <span class="cn">赵大娘</span>
+          <span class="mbti">ESFJ</span>
         </div>
       </div>
     </div>

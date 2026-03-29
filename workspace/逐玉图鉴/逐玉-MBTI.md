@@ -1,0 +1,9 @@
+1）樊长玉：ESFP（Se-Fi-Te-Ni）
+2）谢征：INTJ（Ni-Te-Fi-Se）
+3）随元青：ESTP（Se-Ti-Fe-Ni）
+4）齐旻：INFJ（Ni-Fe-Ti-Se）
+5）魏严：ENTJ（Te-Ni-Se-Fi）
+6）赵大娘：ESFJ（Fe-Si-Ne-Ti）
+7）宋砚：ISFJ（Si-Fe-Ti-Ne）
+8）俞浅浅：ENTP（Ne-Ti-Fe-Si）
+9）李怀安：ISFJ（Si-Fe-Ti-Ne）

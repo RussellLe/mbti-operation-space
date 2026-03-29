@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李怀安 MBTI 深度解读海报</title>
+  <style>
+    :root {
+      --bg-top: #f4eee7;
+      --bg-bottom: #d8c8bb;
+      --ink: #1a1516;
+      --muted: #715f68;
+      --gold: #c39c72;
+      --wine: #7c4f61;
+      --card: rgba(255, 248, 242, 0.65);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #111;
+      font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+      color: var(--ink);
+      padding: 20px 0;
+    }
+
+    .poster-container {
+      width: 540px;
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 32%),
+        radial-gradient(circle at 85% 14%, rgba(208, 182, 155, 0.6), transparent 26%),
+        linear-gradient(180deg, var(--bg-top) 0%, #ecdcca 32%, var(--bg-bottom) 100%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .grain {
+      position: absolute; inset: 0; opacity: 0.1;
+      background-image:
+        linear-gradient(rgba(90, 67, 63, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 67, 63, 0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply; z-index: 0; pointer-events: none;
+    }
+
+    .hero-section { position: relative; width: 100%; height: 400px; z-index: 1; }
+    .hero-section img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 49.7% 34.2%;
+      filter: saturate(0.85) contrast(1.1) brightness(0.9);
+    }
+    .hero-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, var(--bg-top) 100%);
+      pointer-events: none;
+    }
+
+    .content-wrapper { position: relative; padding: 0 32px 56px; z-index: 2; margin-top: -80px; }
+
+    .header-title { position: relative; margin-bottom: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .mbti-badge {
+      font-family: sans-serif; font-size: 14px; letter-spacing: 4px; font-weight: 900;
+      color: #fff; background: var(--ink); padding: 6px 16px; margin-bottom: 12px;
+      border-radius: 4px; box-shadow: 0 8px 20px rgba(26, 21, 22, 0.2);
+    }
+    .character-name {
+      font-size: 48px; font-weight: 900; letter-spacing: 2px;
+      color: var(--ink); line-height: 1.1;
+      text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
+    }
+    .function-stack {
+      font-family: sans-serif; font-size: 13px; letter-spacing: 4px;
+      color: var(--wine); margin-top: 12px; font-weight: 900; text-transform: uppercase;
+    }
+
+    .quote-section { position: relative; margin: 40px 0; padding-left: 24px; border-left: 3px solid var(--gold); }
+    .quote-section p { font-size: 18px; line-height: 1.6; font-style: italic; color: var(--ink); font-weight: 700; letter-spacing: 1px; }
+
+    .summary-section { margin-bottom: 48px; }
+    .summary-bento {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+      border-radius: 20px; padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .summary-bento p { font-size: 14.5px; line-height: 1.9; color: #3b3034; text-align: justify; }
+
+    .cognitive-functions { display: flex; flex-direction: column; gap: 36px; padding-left: 24px; }
+    .function-node { position: relative; display: flex; align-items: flex-start; }
+
+    .circle-tag {
+      position: absolute; left: -28px; top: 16px; width: 72px; height: 72px;
+      border-radius: 50%; background: #fdfaf7; border: 3px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(184, 138, 88, 0.25);
+      display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5;
+    }
+    .circle-tag::after {
+      content: ''; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      width: 12px; height: 3px; background: var(--gold);
+    }
+    .circle-tag .abbr { font-family: sans-serif; font-size: 24px; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+    .circle-tag .role { font-size: 10px; font-weight: 700; color: var(--wine); letter-spacing: 1px; }
+
+    .function-card {
+      width: 100%; margin-left: 24px; padding: 20px 24px 24px 36px;
+      background: var(--card); border-left: 4px solid var(--gold);
+      border-radius: 0 20px 20px 0;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    }
+    .function-card h3 { font-size: 16px; color: var(--ink); margin-bottom: 16px; font-weight: 900; letter-spacing: 1px; }
+
+    .tree-container { position: relative; padding-left: 14px; display: flex; flex-direction: column; gap: 16px; }
+    .tree-container::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+
+    .tree-item { position: relative; line-height: 1.6; }
+    .tree-item::before {
+      content: ''; position: absolute; left: -14px; top: 10px;
+      width: 10px; height: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+    .tree-item::after {
+      content: ''; position: absolute; left: -17.5px; top: 6.5px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 6px var(--gold);
+    }
+    .tree-content { font-size: 14px; color: #3b3034; text-align: justify; line-height: 1.75; }
+
+    .tree-summary {
+      position: relative; margin-top: 4px; padding-top: 16px;
+      border-top: 1px dashed rgba(184, 138, 88, 0.4);
+      font-size: 14px; font-weight: 700; color: var(--wine);
+      line-height: 1.75; text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-container">
+    <div class="grain"></div>
+    <div class="hero-section">
+      <img src="file:///Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/李怀安.jpg" alt="李怀安剧照">
+    </div>
+    <div class="content-wrapper">
+      <div class="header-title">
+        <div class="mbti-badge">ISFJ</div>
+        <h1 class="character-name">李怀安</h1>
+        <div class="function-stack">Si - Fe - Ti - Ne</div>
+      </div>
+      <div class="quote-section">
+        <p>「可我有我之所求，乃是天下太平，百姓不再受战乱之苦」</p>
+      </div>
+      <div class="summary-section">
+        <div class="summary-bento">
+          <p>李怀安就是那种，只要你托付给他一件事，他就算是拼了命也一定给你办妥的人。粮草军需，他一趟趟亲自盯着运到前线阵地；教书先生跑了，他再去寻一个，实在寻不到就自己硬着头皮教。长玉在军营里根基不稳，他便暗中帮她把军籍手续跑全、把名分坐实。他干的全是些吃力不讨好、出不了风头的苦差事。李家跟齐旻搅和在一起时，他被自家人囚禁；一旦脱困，他第一时间带着仅剩的人马奔赴修罗战场。这个人的一生，或许没有过什么惊天动地的高光时刻，但当粮草准时送达、先生请入军帐、军规明正言顺时，你回头一看，这些撑起大局的地基，全是他一个人在泥泞中默默夯实的。</p>
+        </div>
+      </div>
+      <div class="cognitive-functions">
+        
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Si</span>
+            <span class="role">主导</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾感觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">李怀安行事，骨子里透着一套自小养成的规矩与章法。头一回出手救长玉，他没有意气用事地莽撞上前，而是先稳住局面，查清前因后果，每走一步都为彼此留足了退路。</div></div>
+              <div class="tree-item"><div class="tree-content">后来暗中调查长玉的身世，他一边抽丝剥茧地收集线索，一边不动声色地筹备着备选方案，做情报的功夫扎实细致得像是在对账本。</div></div>
+              <div class="tree-item"><div class="tree-content">到了霁州接管粮草军需，接手的尽是最琐碎、最磨人的苦差事，他却能一件件捋得清清楚楚，未曾漏发过一批物资、未曾延误过一趟运送。</div></div>
+              <div class="tree-summary">给长玉请的教书先生被气跑了一个又一个，他便接着找、接着请，最后实在没办法干脆自己披挂上阵，一边嘟嘟囔囔地抱怨，一边耐着性子把兵书从头到尾讲给她听。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Fe</span>
+            <span class="role">辅助</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾情感</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">长玉出身草莽，初入军中难免处处被人戳脊梁骨嚼舌根。</div></div>
+              <div class="tree-item"><div class="tree-content">李怀安没有选择替她去和别人争吵，而是默默帮她走正规程序、立下正式名分，用无懈可击的制度将那些恶毒的流言蜚语堵死。</div></div>
+              <div class="tree-item"><div class="tree-content">他公开认长玉为义妹，这一步棋既挡住了外头的风言风语，也体面地捋清了自己与长玉之间的界限。</div></div>
+              <div class="tree-item"><div class="tree-content">贺敬元临终前托付他照看樊家姐妹，他便将这份沉甸甸的嘱托毫无怨言地纳入了自己的责任范围。</div></div>
+              <div class="tree-summary">肩膀上多了一层担子，他便多扛起一份责任，永远是不声不响、安安稳稳的。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ti</span>
+            <span class="role">第三</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾思维</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">在西固巷盘查“言正”真实身份的那段情节中，他表面上客客气气、温润如玉，可抛出的问话却是一圈圈不动声色收紧的罗网，每一个问题都在悄无声息地封死对方的退路。</div></div>
+              <div class="tree-item"><div class="tree-content">后来他对齐旻真面目的判断，也是通过一点一滴的细节慢慢拼凑出来的。在目睹了太多世态炎凉后，他才冷静地得出结论：此人掌权，绝非天下之福。</div></div>
+              <div class="tree-summary">他与谢征言语交锋时，辞藻并不锋利，却自带一种不慌不忙的笃定，将坚实的道理一层一层地垒在对方面前，不卑不亢。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ne</span>
+            <span class="role">劣势</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾直觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">李怀安吃亏，就吃在不懂变通上。</div></div>
+              <div class="tree-item"><div class="tree-content">被李陘软禁时，他唯一能做的便是在极其有限的空间里，竭尽全力拦住局势向更坏的方向滑落，却无论如何也无法像俞浅浅那般，灵光乍现想出翻盘的奇招。</div></div>
+              <div class="tree-item"><div class="tree-content">他的法子，永远是最稳健、最保险的，但也注定了永远快不起来。可最难能可贵的是，他绝不当逃兵。</div></div>
+              <div class="tree-item"><div class="tree-content">战场上兵败如山倒，只剩下一批残兵败将，他毅然带着他们赶赴前线与长玉会合，脑海中从未动过优先保全自己的念头。</div></div>
+              <div class="tree-summary">他靠的就是这股劲儿——不管时局多烂、处境多险，他永远死死钉在自己该待的位置上。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

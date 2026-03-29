@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>赵大娘 MBTI 深度解读海报</title>
+  <style>
+    :root {
+      --bg-top: #f4eee7;
+      --bg-bottom: #d8c8bb;
+      --ink: #1a1516;
+      --muted: #715f68;
+      --gold: #c39c72;
+      --wine: #7c4f61;
+      --card: rgba(255, 248, 242, 0.65);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #111;
+      font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+      color: var(--ink);
+      padding: 20px 0;
+    }
+
+    .poster-container {
+      width: 540px;
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 32%),
+        radial-gradient(circle at 85% 14%, rgba(208, 182, 155, 0.6), transparent 26%),
+        linear-gradient(180deg, var(--bg-top) 0%, #ecdcca 32%, var(--bg-bottom) 100%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .grain {
+      position: absolute; inset: 0; opacity: 0.1;
+      background-image:
+        linear-gradient(rgba(90, 67, 63, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 67, 63, 0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply; z-index: 0; pointer-events: none;
+    }
+
+    .hero-section { position: relative; width: 100%; height: 400px; z-index: 1; }
+    .hero-section img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 39.9% 30.3%;
+      filter: saturate(0.85) contrast(1.1) brightness(0.9);
+    }
+    .hero-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, var(--bg-top) 100%);
+      pointer-events: none;
+    }
+
+    .content-wrapper { position: relative; padding: 0 32px 56px; z-index: 2; margin-top: -80px; }
+
+    .header-title { position: relative; margin-bottom: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .mbti-badge {
+      font-family: sans-serif; font-size: 14px; letter-spacing: 4px; font-weight: 900;
+      color: #fff; background: var(--ink); padding: 6px 16px; margin-bottom: 12px;
+      border-radius: 4px; box-shadow: 0 8px 20px rgba(26, 21, 22, 0.2);
+    }
+    .character-name {
+      font-size: 48px; font-weight: 900; letter-spacing: 2px;
+      color: var(--ink); line-height: 1.1;
+      text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
+    }
+    .function-stack {
+      font-family: sans-serif; font-size: 13px; letter-spacing: 4px;
+      color: var(--wine); margin-top: 12px; font-weight: 900; text-transform: uppercase;
+    }
+
+    .quote-section { position: relative; margin: 40px 0; padding-left: 24px; border-left: 3px solid var(--gold); }
+    .quote-section p { font-size: 18px; line-height: 1.6; font-style: italic; color: var(--ink); font-weight: 700; letter-spacing: 1px; }
+
+    .summary-section { margin-bottom: 48px; }
+    .summary-bento {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+      border-radius: 20px; padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .summary-bento p { font-size: 14.5px; line-height: 1.9; color: #3b3034; text-align: justify; }
+
+    .cognitive-functions { display: flex; flex-direction: column; gap: 36px; padding-left: 24px; }
+    .function-node { position: relative; display: flex; align-items: flex-start; }
+
+    .circle-tag {
+      position: absolute; left: -28px; top: 16px; width: 72px; height: 72px;
+      border-radius: 50%; background: #fdfaf7; border: 3px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(184, 138, 88, 0.25);
+      display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5;
+    }
+    .circle-tag::after {
+      content: ''; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      width: 12px; height: 3px; background: var(--gold);
+    }
+    .circle-tag .abbr { font-family: sans-serif; font-size: 24px; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+    .circle-tag .role { font-size: 10px; font-weight: 700; color: var(--wine); letter-spacing: 1px; }
+
+    .function-card {
+      width: 100%; margin-left: 24px; padding: 20px 24px 24px 36px;
+      background: var(--card); border-left: 4px solid var(--gold);
+      border-radius: 0 20px 20px 0;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    }
+    .function-card h3 { font-size: 16px; color: var(--ink); margin-bottom: 16px; font-weight: 900; letter-spacing: 1px; }
+
+    .tree-container { position: relative; padding-left: 14px; display: flex; flex-direction: column; gap: 16px; }
+    .tree-container::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+
+    .tree-item { position: relative; line-height: 1.6; }
+    .tree-item::before {
+      content: ''; position: absolute; left: -14px; top: 10px;
+      width: 10px; height: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+    .tree-item::after {
+      content: ''; position: absolute; left: -17.5px; top: 6.5px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 6px var(--gold);
+    }
+    .tree-content { font-size: 14px; color: #3b3034; text-align: justify; line-height: 1.75; }
+
+    .tree-summary {
+      position: relative; margin-top: 4px; padding-top: 16px;
+      border-top: 1px dashed rgba(184, 138, 88, 0.4);
+      font-size: 14px; font-weight: 700; color: var(--wine);
+      line-height: 1.75; text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-container">
+    <div class="grain"></div>
+    <div class="hero-section">
+      <img src="file:///Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/赵大娘.jpg" alt="赵大娘剧照">
+    </div>
+    <div class="content-wrapper">
+      <div class="header-title">
+        <div class="mbti-badge">ESFJ</div>
+        <h1 class="character-name">赵大娘</h1>
+        <div class="function-stack">Fe - Si - Ne - Ti</div>
+      </div>
+      <div class="quote-section">
+        <p>「强扭的瓜不甜。——不用甜，解渴就行！」</p>
+      </div>
+      <div class="summary-section">
+        <div class="summary-bento">
+          <p>赵大娘就是西固巷里最典型、也最普通的那种热心肠邻居。嗓门极大，爱管闲事，自家锅里炖了热汤，必定要盛一碗端去隔壁。长玉在雪地里拖救伤员，她跟着一起费力抬；宋家人上门撒野，她堵在门槛上破口大骂替长玉出头。她天天催长玉成家的念叨让人耳朵起茧，可转头又为这场婚事忙前忙后、操碎了心。后来战火纷飞，长玉披甲挂帅成了威风凛凛的将军，整个乱世都被翻了个底朝天，可再见赵大娘时，她脱口而出的第一句话，依然是那句最本分的：“吃过饭没？”</p>
+        </div>
+      </div>
+      <div class="cognitive-functions">
+        
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Fe</span>
+            <span class="role">主导</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾情感</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">眼见长玉在冰天雪地里救人，赵大娘二话不说便卷起袖子搭把手。宋家人仗势欺人找长玉麻烦，她毫不犹豫地挡在最前面；西固巷里那些难听的闲言碎语，她一句都不跟着掺和。</div></div>
+              <div class="tree-item"><div class="tree-content">她嘴里虽然成天嘟囔着长玉总惹麻烦，可背地里却早早替人家垫上了抓药的钱。她太懂得一个无父无母的姑娘，最怕的就是身边连个知冷知热的人都没有。</div></div>
+              <div class="tree-summary">所以当街坊四邻指指点点时她站出来，只为了让长玉一回头，就能看见身后还有人替她撑腰。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Si</span>
+            <span class="role">辅助</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾感觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">赵大娘苦口婆心地劝长玉考虑招赘，话虽然说得粗鄙，但那套实打实的生存哲学，全是她大半辈子在市井里摸爬滚打攒下来的经验。</div></div>
+              <div class="tree-item"><div class="tree-content">帮着张罗婚事时，她里外奔波、脚不沾地，被褥该铺几层、席面该怎么排布，全凭着她记忆中经手过的老规矩，安排得妥妥帖帖。</div></div>
+              <div class="tree-item"><div class="tree-content">谢征住在长玉家，她帮忙打掩护遮掩了好几次，却从不去刨根问底，只因为她凭着多年看人的经验，断定这个后生对长玉没有坏心眼。</div></div>
+              <div class="tree-summary">林安城大乱之际，她心里还时刻惦记着帮长玉看家、照料生病的妹妹，邻里之间该尽的本分，她一件都没落下。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ne</span>
+            <span class="role">第三</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾直觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">能给长玉出“招赘”的主意，在相对保守的西固巷里，这已算得上是相当跳脱的想法了。</div></div>
+              <div class="tree-item"><div class="tree-content">旁人只会催着长玉赶紧找个男人嫁了，她却反向思考，琢磨着让长玉把男人招进门，自己挺直腰板当家作主。</div></div>
+              <div class="tree-item"><div class="tree-content">她一眼就瞧出长玉对谢征动了春心，一边嘴上打趣，心里却实打实地替这姑娘高兴，催起他们圆房来更是理直气壮。</div></div>
+              <div class="tree-summary">长玉和谢征闹别扭冷战时，她几句直白通透的大白话，便轻巧地破了僵局，一开口全是鲜活的烟火气。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ti</span>
+            <span class="role">劣势</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾思维</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">赵大娘行事，从来不靠冷冰冰的逻辑分析。长玉的真实身份、谢征那错综复杂的过往，这些费脑子的事她一概不去深想，也想不明白。</div></div>
+              <div class="tree-item"><div class="tree-content">她判断一个人是好是坏，全凭日常相处的体感和街坊间经年累月的直觉。这套准则在西固巷里游刃有余，可一旦触碰朝堂诡谲与天下战祸，便彻底超出了她的理解范畴。</div></div>
+              <div class="tree-item"><div class="tree-content">战乱来袭时她也会慌乱，但慌过之后，该照顾邻居还是照顾，该操持的家务一件不落。</div></div>
+              <div class="tree-summary">大局她掌控不了，她只求把手边能摸得着的琐事做好。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>樊长玉 MBTI 深度解读海报</title>
+  <style>
+    :root {
+      --bg-top: #f4eee7;
+      --bg-bottom: #d8c8bb;
+      --ink: #1a1516;
+      --muted: #715f68;
+      --gold: #c39c72;
+      --wine: #7c4f61;
+      --card: rgba(255, 248, 242, 0.65);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #111;
+      font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+      color: var(--ink);
+      padding: 20px 0;
+    }
+
+    .poster-container {
+      width: 540px;
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 32%),
+        radial-gradient(circle at 85% 14%, rgba(208, 182, 155, 0.6), transparent 26%),
+        linear-gradient(180deg, var(--bg-top) 0%, #ecdcca 32%, var(--bg-bottom) 100%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .grain {
+      position: absolute; inset: 0; opacity: 0.1;
+      background-image:
+        linear-gradient(rgba(90, 67, 63, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 67, 63, 0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply; z-index: 0; pointer-events: none;
+    }
+
+    .hero-section { position: relative; width: 100%; height: 400px; z-index: 1; }
+    .hero-section img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 40.7% 50.6%;
+      filter: saturate(0.85) contrast(1.1) brightness(0.9);
+    }
+    .hero-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, var(--bg-top) 100%);
+      pointer-events: none;
+    }
+
+    .content-wrapper { position: relative; padding: 0 32px 56px; z-index: 2; margin-top: -80px; }
+
+    .header-title { position: relative; margin-bottom: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .mbti-badge {
+      font-family: sans-serif; font-size: 14px; letter-spacing: 4px; font-weight: 900;
+      color: #fff; background: var(--ink); padding: 6px 16px; margin-bottom: 12px;
+      border-radius: 4px; box-shadow: 0 8px 20px rgba(26, 21, 22, 0.2);
+    }
+    .character-name {
+      font-size: 48px; font-weight: 900; letter-spacing: 2px;
+      color: var(--ink); line-height: 1.1;
+      text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
+    }
+    .function-stack {
+      font-family: sans-serif; font-size: 13px; letter-spacing: 4px;
+      color: var(--wine); margin-top: 12px; font-weight: 900; text-transform: uppercase;
+    }
+
+    .quote-section { position: relative; margin: 40px 0; padding-left: 24px; border-left: 3px solid var(--gold); }
+    .quote-section p { font-size: 18px; line-height: 1.6; font-style: italic; color: var(--ink); font-weight: 700; letter-spacing: 1px; }
+
+    .summary-section { margin-bottom: 48px; }
+    .summary-bento {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+      border-radius: 20px; padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .summary-bento p { font-size: 14.5px; line-height: 1.9; color: #3b3034; text-align: justify; }
+
+    .cognitive-functions { display: flex; flex-direction: column; gap: 36px; padding-left: 24px; }
+    .function-node { position: relative; display: flex; align-items: flex-start; }
+
+    .circle-tag {
+      position: absolute; left: -28px; top: 16px; width: 72px; height: 72px;
+      border-radius: 50%; background: #fdfaf7; border: 3px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(184, 138, 88, 0.25);
+      display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5;
+    }
+    .circle-tag::after {
+      content: ''; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      width: 12px; height: 3px; background: var(--gold);
+    }
+    .circle-tag .abbr { font-family: sans-serif; font-size: 24px; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+    .circle-tag .role { font-size: 10px; font-weight: 700; color: var(--wine); letter-spacing: 1px; }
+
+    .function-card {
+      width: 100%; margin-left: 24px; padding: 20px 24px 24px 36px;
+      background: var(--card); border-left: 4px solid var(--gold);
+      border-radius: 0 20px 20px 0;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    }
+    .function-card h3 { font-size: 16px; color: var(--ink); margin-bottom: 16px; font-weight: 900; letter-spacing: 1px; }
+
+    .tree-container { position: relative; padding-left: 14px; display: flex; flex-direction: column; gap: 16px; }
+    .tree-container::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+
+    .tree-item { position: relative; line-height: 1.6; }
+    .tree-item::before {
+      content: ''; position: absolute; left: -14px; top: 10px;
+      width: 10px; height: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+    .tree-item::after {
+      content: ''; position: absolute; left: -17.5px; top: 6.5px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 6px var(--gold);
+    }
+    .tree-content { font-size: 14px; color: #3b3034; text-align: justify; line-height: 1.75; }
+
+    .tree-summary {
+      position: relative; margin-top: 4px; padding-top: 16px;
+      border-top: 1px dashed rgba(184, 138, 88, 0.4);
+      font-size: 14px; font-weight: 700; color: var(--wine);
+      line-height: 1.75; text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-container">
+    <div class="grain"></div>
+    <div class="hero-section">
+      <img src="file:///Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/樊长玉.jpg" alt="樊长玉剧照">
+    </div>
+    <div class="content-wrapper">
+      <div class="header-title">
+        <div class="mbti-badge">ESFP</div>
+        <h1 class="character-name">樊长玉</h1>
+        <div class="function-stack">Se - Fi - Te - Ni</div>
+      </div>
+      <div class="quote-section">
+        <p>「先前听他念这话时，只觉得顺耳好听，却压根不晓得好在哪儿。直到方才，他转头朝我看过来，那一刹，院子里静悄悄的，雪花飘着都像轻了许多，连吹过来的风，都软乎乎的不刮人了。」</p>
+      </div>
+      <div class="summary-section">
+        <div class="summary-bento">
+          <p>她从崇州集市的杀猪丫头，一路走到朝堂的登闻鼓前。这中间，她在雪地里救过人，在猪棚里藏过人，在林安的尸骨堆中熬过漫漫长夜，又带兵杀出重围——从没有谁为她铺过路。当了银簪，她哭一场擦干眼泪回去做饭；妹妹喘不上气，她拿根棍子敢跟全世界拼命；宋砚要她做妾，她甩手便走；遇到该亲的人，当众便亲了。她不会去盘算太遥远的虚妄，手边够得着什么就死死抓住，一刀一刀，硬生生地把日子劈开，蹚出一条路来。</p>
+        </div>
+      </div>
+      <div class="cognitive-functions">
+        
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Se</span>
+            <span class="role">主导</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾感觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">雪地里翻开陌生人的衣襟查看伤口，她当场便能判断伤情轻重；大伯上门夺房契，她一把抄起门边的木棍挡在身前；</div></div>
+              <div class="tree-item"><div class="tree-content">妹妹哮喘发作，她立刻翻脸将客人扫地出门；官差搜查时，她借着屠户的身份打掩护，利落地把谢征藏进猪棚。</div></div>
+              <div class="tree-summary">樊长玉永远是身体比脑子快半拍的人，危机迎面撞来她就敢接，接住了再去想下一步。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Fi</span>
+            <span class="role">辅助</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾情感</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">当了母亲留下的银簪给陌生人换药，这事她没跟任何人提过。夜里独自缩在树洞里哭完，天亮回家照常端饭洗碗。宋砚提出纳妾，她拒绝得干脆利落，转头就当着众人的面亲了谢征。</div></div>
+              <div class="tree-item"><div class="tree-content">她喜欢谁、讨厌谁，从来不放进心里反复掂量；</div></div>
+              <div class="tree-summary">谁要是动了她在乎的人和物，她手里那把杀猪刀从来只认人不认理。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Te</span>
+            <span class="role">第三</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾思维</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">在集市上靠一个卤肉摊子养活一家人，算账管货她做得有板有眼。谢征教她背法条，一个大字不识几个的姑娘，硬是一条一条生啃了下来，最终敲响登闻鼓，站到朝堂上状告魏严。</div></div>
+              <div class="tree-item"><div class="tree-content">带兵夜袭时，她分工明确、指令简短。</div></div>
+              <div class="tree-summary">从杀猪女蜕变为将领，她的谋略或许笨拙，但每一击都实打实地砸在痛点上。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ni</span>
+            <span class="role">劣势</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾直觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">她几乎从不思考太长远的未来。在雪地里救人，只因眼前这个人在流血；后来决定嫁给谢征，也只因那个人让她心底响了一下。</div></div>
+              <div class="tree-item"><div class="tree-content">在林安的尸山血海里坐了一整夜后，第二天站起身时，她的眼里便只剩下复仇——被逼到绝路，脑子里就只剩这一个最纯粹的念头。</div></div>
+              <div class="tree-summary">护送村民走到半路，她突然折返战场，她自己也说不清原委，只是直觉告诉她必须回去。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

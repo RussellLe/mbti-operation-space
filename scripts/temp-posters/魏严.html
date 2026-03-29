@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魏严 MBTI 深度解读海报</title>
+  <style>
+    :root {
+      --bg-top: #f4eee7;
+      --bg-bottom: #d8c8bb;
+      --ink: #1a1516;
+      --muted: #715f68;
+      --gold: #c39c72;
+      --wine: #7c4f61;
+      --card: rgba(255, 248, 242, 0.65);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #111;
+      font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+      color: var(--ink);
+      padding: 20px 0;
+    }
+
+    .poster-container {
+      width: 540px;
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 32%),
+        radial-gradient(circle at 85% 14%, rgba(208, 182, 155, 0.6), transparent 26%),
+        linear-gradient(180deg, var(--bg-top) 0%, #ecdcca 32%, var(--bg-bottom) 100%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .grain {
+      position: absolute; inset: 0; opacity: 0.1;
+      background-image:
+        linear-gradient(rgba(90, 67, 63, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 67, 63, 0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply; z-index: 0; pointer-events: none;
+    }
+
+    .hero-section { position: relative; width: 100%; height: 400px; z-index: 1; }
+    .hero-section img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 46.8% 48.1%;
+      filter: saturate(0.85) contrast(1.1) brightness(0.9);
+    }
+    .hero-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, var(--bg-top) 100%);
+      pointer-events: none;
+    }
+
+    .content-wrapper { position: relative; padding: 0 32px 56px; z-index: 2; margin-top: -80px; }
+
+    .header-title { position: relative; margin-bottom: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .mbti-badge {
+      font-family: sans-serif; font-size: 14px; letter-spacing: 4px; font-weight: 900;
+      color: #fff; background: var(--ink); padding: 6px 16px; margin-bottom: 12px;
+      border-radius: 4px; box-shadow: 0 8px 20px rgba(26, 21, 22, 0.2);
+    }
+    .character-name {
+      font-size: 48px; font-weight: 900; letter-spacing: 2px;
+      color: var(--ink); line-height: 1.1;
+      text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
+    }
+    .function-stack {
+      font-family: sans-serif; font-size: 13px; letter-spacing: 4px;
+      color: var(--wine); margin-top: 12px; font-weight: 900; text-transform: uppercase;
+    }
+
+    .quote-section { position: relative; margin: 40px 0; padding-left: 24px; border-left: 3px solid var(--gold); }
+    .quote-section p { font-size: 18px; line-height: 1.6; font-style: italic; color: var(--ink); font-weight: 700; letter-spacing: 1px; }
+
+    .summary-section { margin-bottom: 48px; }
+    .summary-bento {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+      border-radius: 20px; padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .summary-bento p { font-size: 14.5px; line-height: 1.9; color: #3b3034; text-align: justify; }
+
+    .cognitive-functions { display: flex; flex-direction: column; gap: 36px; padding-left: 24px; }
+    .function-node { position: relative; display: flex; align-items: flex-start; }
+
+    .circle-tag {
+      position: absolute; left: -28px; top: 16px; width: 72px; height: 72px;
+      border-radius: 50%; background: #fdfaf7; border: 3px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(184, 138, 88, 0.25);
+      display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5;
+    }
+    .circle-tag::after {
+      content: ''; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      width: 12px; height: 3px; background: var(--gold);
+    }
+    .circle-tag .abbr { font-family: sans-serif; font-size: 24px; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+    .circle-tag .role { font-size: 10px; font-weight: 700; color: var(--wine); letter-spacing: 1px; }
+
+    .function-card {
+      width: 100%; margin-left: 24px; padding: 20px 24px 24px 36px;
+      background: var(--card); border-left: 4px solid var(--gold);
+      border-radius: 0 20px 20px 0;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    }
+    .function-card h3 { font-size: 16px; color: var(--ink); margin-bottom: 16px; font-weight: 900; letter-spacing: 1px; }
+
+    .tree-container { position: relative; padding-left: 14px; display: flex; flex-direction: column; gap: 16px; }
+    .tree-container::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+
+    .tree-item { position: relative; line-height: 1.6; }
+    .tree-item::before {
+      content: ''; position: absolute; left: -14px; top: 10px;
+      width: 10px; height: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+    .tree-item::after {
+      content: ''; position: absolute; left: -17.5px; top: 6.5px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 6px var(--gold);
+    }
+    .tree-content { font-size: 14px; color: #3b3034; text-align: justify; line-height: 1.75; }
+
+    .tree-summary {
+      position: relative; margin-top: 4px; padding-top: 16px;
+      border-top: 1px dashed rgba(184, 138, 88, 0.4);
+      font-size: 14px; font-weight: 700; color: var(--wine);
+      line-height: 1.75; text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-container">
+    <div class="grain"></div>
+    <div class="hero-section">
+      <img src="file:///Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/魏严.jpg" alt="魏严剧照">
+    </div>
+    <div class="content-wrapper">
+      <div class="header-title">
+        <div class="mbti-badge">ENTJ</div>
+        <h1 class="character-name">魏严</h1>
+        <div class="function-stack">Te - Ni - Se - Fi</div>
+      </div>
+      <div class="quote-section">
+        <p>「养你十七载，你我舅甥之间，终究还是走到了这一步。」</p>
+      </div>
+      <div class="summary-section">
+        <div class="summary-bento">
+          <p>魏严这个人，只要踏进任何一间屋子，哪怕一言不发，所有人便知趣地闭上了嘴。他抚养谢征长大，教他读书练剑，然后亲手在他脊背上抽下血淋淋的一百零八鞭。他在朝堂上将满朝文武治得服服帖帖，回到府邸面对这个外甥，却总是别扭地较着劲。十七年前他做下了一个狠绝的决断，此后的每一步，其实都在为当年善后。他比谁都清楚这条路早已无法回头，却也绝不允许自己停下脚步。</p>
+        </div>
+      </div>
+      <div class="cognitive-functions">
+        
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Te</span>
+            <span class="role">主导</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾思维</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">魏严在朝堂上驳倒李太傅，从来不需要长篇大论，寥寥三句话便能将政敌架到退无可退的死角。</div></div>
+              <div class="tree-item"><div class="tree-content">他派出刺客暗杀谢征、搜查樊家，所有的行动都只指向“销毁证据”这一个明确的目标，手段冷酷精准，毫无多余动作。</div></div>
+              <div class="tree-item"><div class="tree-content">当长玉身份暴露的消息传入耳中，他的第一反应是立刻拟写弹劾奏章。于他而言，朝堂上的风浪，永远要优先用铁腕的制度与程序去镇压。</div></div>
+              <div class="tree-summary">他一手扶持小皇帝上位，同时又让对方清醒地认识到自己不过是个傀儡——权力的筹码，他分得冷酷且分明。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ni</span>
+            <span class="role">辅助</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾直觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">他一直清楚谢征心中暗藏怨恨，但他非但没有选择退让安抚，反而变本加厉地打压。因为他的直觉和判断告诉他，一旦退让半步，局面便会彻底崩盘。</div></div>
+              <div class="tree-item"><div class="tree-content">宫变之夜，乱局如沸水翻腾，他依然能在极短的时间内快速调兵遣将，清点哪些人尚可用、哪些人已经倒戈。</div></div>
+              <div class="tree-item"><div class="tree-content">当他在朝堂上被当众指控时，他从容不迫地掏出伪造的书信和假虎符试图翻盘——这一切，他早已在脑海中预演过无数遍。</div></div>
+              <div class="tree-item"><div class="tree-content">与陶太傅谈及十七年前的旧事时，他轻描淡写地留下一句“一步错步步错”。</div></div>
+              <div class="tree-summary">他比谁都清楚这条路早已绝了回头路。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Se</span>
+            <span class="role">第三</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾感觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">魏严不需要提高嗓门，他只要往那里一站，鹰隼般的眼神冷冷扫过，整间大殿便会鸦雀无声。他在谢氏墓前规规矩矩地敬香行礼，转过身便毫不留情地对谢征动了家法。</div></div>
+              <div class="tree-item"><div class="tree-content">一百零八鞭抽完，他面不改色。宫变形势急转直下时，他依然能凭借本能立刻调动禁卫军完成布防，身体的反应与大脑的决断完美同步，没有半点迟疑。</div></div>
+              <div class="tree-item"><div class="tree-content">宫宴之上，谢征当众发难，魏严越是冷静，在场的人就越是胆寒。</div></div>
+              <div class="tree-summary">他就是靠着这股不动如山的压迫感，死死镇住了所有人。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Fi</span>
+            <span class="role">劣势</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾情感</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">魏严这个人，一生掌控了权柄、掌控了朝局，唯独与谢征之间的关系，他永远理不清。他亲手将谢征抚养长大，传道授业，又亲手狠压了谢征整整十几年。</div></div>
+              <div class="tree-item"><div class="tree-content">养育之恩与残酷打压，他可以同时施加，但他自己也说不清这究竟算什么感情。直到最后，当所有的政治筹码挥霍一空，他看向谢征的眼神深处，依然翻涌着某些复杂的东西。</div></div>
+              <div class="tree-summary">他描摹不出那究竟是什么，也用尽了一生都没能学会如何去坦然面对。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

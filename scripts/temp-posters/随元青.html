@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>随元青 MBTI 深度解读海报</title>
+  <style>
+    :root {
+      --bg-top: #f4eee7;
+      --bg-bottom: #d8c8bb;
+      --ink: #1a1516;
+      --muted: #715f68;
+      --gold: #c39c72;
+      --wine: #7c4f61;
+      --card: rgba(255, 248, 242, 0.65);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #111;
+      font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+      color: var(--ink);
+      padding: 20px 0;
+    }
+
+    .poster-container {
+      width: 540px;
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 32%),
+        radial-gradient(circle at 85% 14%, rgba(208, 182, 155, 0.6), transparent 26%),
+        linear-gradient(180deg, var(--bg-top) 0%, #ecdcca 32%, var(--bg-bottom) 100%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .grain {
+      position: absolute; inset: 0; opacity: 0.1;
+      background-image:
+        linear-gradient(rgba(90, 67, 63, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 67, 63, 0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply; z-index: 0; pointer-events: none;
+    }
+
+    .hero-section { position: relative; width: 100%; height: 400px; z-index: 1; }
+    .hero-section img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 42.6% 30.8%;
+      filter: saturate(0.85) contrast(1.1) brightness(0.9);
+    }
+    .hero-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, var(--bg-top) 100%);
+      pointer-events: none;
+    }
+
+    .content-wrapper { position: relative; padding: 0 32px 56px; z-index: 2; margin-top: -80px; }
+
+    .header-title { position: relative; margin-bottom: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .mbti-badge {
+      font-family: sans-serif; font-size: 14px; letter-spacing: 4px; font-weight: 900;
+      color: #fff; background: var(--ink); padding: 6px 16px; margin-bottom: 12px;
+      border-radius: 4px; box-shadow: 0 8px 20px rgba(26, 21, 22, 0.2);
+    }
+    .character-name {
+      font-size: 48px; font-weight: 900; letter-spacing: 2px;
+      color: var(--ink); line-height: 1.1;
+      text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
+    }
+    .function-stack {
+      font-family: sans-serif; font-size: 13px; letter-spacing: 4px;
+      color: var(--wine); margin-top: 12px; font-weight: 900; text-transform: uppercase;
+    }
+
+    .quote-section { position: relative; margin: 40px 0; padding-left: 24px; border-left: 3px solid var(--gold); }
+    .quote-section p { font-size: 18px; line-height: 1.6; font-style: italic; color: var(--ink); font-weight: 700; letter-spacing: 1px; }
+
+    .summary-section { margin-bottom: 48px; }
+    .summary-bento {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+      border-radius: 20px; padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .summary-bento p { font-size: 14.5px; line-height: 1.9; color: #3b3034; text-align: justify; }
+
+    .cognitive-functions { display: flex; flex-direction: column; gap: 36px; padding-left: 24px; }
+    .function-node { position: relative; display: flex; align-items: flex-start; }
+
+    .circle-tag {
+      position: absolute; left: -28px; top: 16px; width: 72px; height: 72px;
+      border-radius: 50%; background: #fdfaf7; border: 3px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(184, 138, 88, 0.25);
+      display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5;
+    }
+    .circle-tag::after {
+      content: ''; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      width: 12px; height: 3px; background: var(--gold);
+    }
+    .circle-tag .abbr { font-family: sans-serif; font-size: 24px; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+    .circle-tag .role { font-size: 10px; font-weight: 700; color: var(--wine); letter-spacing: 1px; }
+
+    .function-card {
+      width: 100%; margin-left: 24px; padding: 20px 24px 24px 36px;
+      background: var(--card); border-left: 4px solid var(--gold);
+      border-radius: 0 20px 20px 0;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    }
+    .function-card h3 { font-size: 16px; color: var(--ink); margin-bottom: 16px; font-weight: 900; letter-spacing: 1px; }
+
+    .tree-container { position: relative; padding-left: 14px; display: flex; flex-direction: column; gap: 16px; }
+    .tree-container::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+
+    .tree-item { position: relative; line-height: 1.6; }
+    .tree-item::before {
+      content: ''; position: absolute; left: -14px; top: 10px;
+      width: 10px; height: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+    .tree-item::after {
+      content: ''; position: absolute; left: -17.5px; top: 6.5px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 6px var(--gold);
+    }
+    .tree-content { font-size: 14px; color: #3b3034; text-align: justify; line-height: 1.75; }
+
+    .tree-summary {
+      position: relative; margin-top: 4px; padding-top: 16px;
+      border-top: 1px dashed rgba(184, 138, 88, 0.4);
+      font-size: 14px; font-weight: 700; color: var(--wine);
+      line-height: 1.75; text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-container">
+    <div class="grain"></div>
+    <div class="hero-section">
+      <img src="file:///Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/随元青.jpg" alt="随元青剧照">
+    </div>
+    <div class="content-wrapper">
+      <div class="header-title">
+        <div class="mbti-badge">ESTP</div>
+        <h1 class="character-name">随元青</h1>
+        <div class="function-stack">Se - Ti - Fe - Ni</div>
+      </div>
+      <div class="quote-section">
+        <p>「你们世子以后就没有世子了！」</p>
+      </div>
+      <div class="summary-section">
+        <div class="summary-bento">
+          <p>随元青第一次出场就带着笑，那种笑意却让人后背发凉。身为长信王世子、天生的将门种，他杀人如同饮水般寻常，闲暇时便拿人心翻来覆去地把玩。十三娘将他从水里捞起，他躺在病榻上，满脑子算计的却是如何将救命恩人变成趁手的兵器。把无辜女孩绑到军阵前，他要看的是对面大人的肝胆俱裂；洪水吞没了他的大军，他从水里爬起照样挥刀屠戮；被绑在俘虏柱上，他脸上的那道笑纹甚至都没变过。直到废庙里，齐旻的毒酒灌进喉咙，他拼着最后一口气把虎符和头颅交托给十三娘。他到死都在算计下一步，只是从来没弄明白，自己为什么非得走到万劫不复的这一步。</p>
+        </div>
+      </div>
+      <div class="cognitive-functions">
+        
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Se</span>
+            <span class="role">主导</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾感觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">哪怕刀锋已经架在脖子上，他依然能带笑挑衅生擒他的人；被利箭射落河中，他的第一反应是冷静评估自己还有几块骨头能动。</div></div>
+              <div class="tree-item"><div class="tree-content">把樊长玉逼到悬崖边时，他不急着一招致命，而是像猫戏弄濒死的老鼠一般，极度享受猎物的恐惧。洪水冲垮了他的全部兵马，他抹了把脸从泥水里爬出来，提着刀继续砍人。</div></div>
+              <div class="tree-summary">随元青只活在眼前、活在当下，身上永远带着散不去的血腥味。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ti</span>
+            <span class="role">辅助</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾思维</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">落水后被十三娘救起，伤口还在淌血，他的脑子已经开始盘算这个女人能有几分利用价值。在清风寨里，他把虚情假意当成筹码，一点一点喂给十三娘，分量和节奏拿捏得分毫不差。</div></div>
+              <div class="tree-item"><div class="tree-content">沦为阶下囚时他也毫不慌乱，嘴里吐出的每一句嘲讽，都精准踩在敌手的痛处。</div></div>
+              <div class="tree-summary">他或许不擅长做长线推演，但在眼前的这一方残局里，他比任何人都懂得如何寻找最致命的角度。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Fe</span>
+            <span class="role">第三</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾情感</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">他太清楚别人想听什么、最怕什么。绑架长宁推到两军阵前，他的视线越过女孩的头顶，死死盯着对面谢征和樊长玉脸上逐渐崩溃的表情。</div></div>
+              <div class="tree-item"><div class="tree-content">在废庙里，他对着齐旻痛诉兄弟情分，演得声泪俱下。</div></div>
+              <div class="tree-summary">他那张嘴，读得懂所有人的软肋，然后毫不留情地一刀捅进去。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ni</span>
+            <span class="role">劣势</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾直觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">他赢下了每一场局部厮杀，却输掉了整盘天下大棋。谢征轻描淡写的几句话，就成功挑起了他对齐旻的疑心，他甚至连自己咬了钩都不知道。</div></div>
+              <div class="tree-item"><div class="tree-content">下令屠戮林安城，让他享受了一时的痛快，却也将所有中立的势力彻底推向了对立面。</div></div>
+              <div class="tree-summary">临死前，他将自己的头颅和兵符托付给十三娘，妄图在死后继续复仇——直到生命的最后一秒，他依然只能看到眼前的那一步，却看不见十三娘带着这些东西走出废庙后，世界究竟会变成什么样。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

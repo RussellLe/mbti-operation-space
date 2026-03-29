@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>宋砚 MBTI 深度解读海报</title>
+  <style>
+    :root {
+      --bg-top: #f4eee7;
+      --bg-bottom: #d8c8bb;
+      --ink: #1a1516;
+      --muted: #715f68;
+      --gold: #c39c72;
+      --wine: #7c4f61;
+      --card: rgba(255, 248, 242, 0.65);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #111;
+      font-family: 'Noto Serif SC', 'Songti SC', 'STSong', serif;
+      color: var(--ink);
+      padding: 20px 0;
+    }
+
+    .poster-container {
+      width: 540px;
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), transparent 32%),
+        radial-gradient(circle at 85% 14%, rgba(208, 182, 155, 0.6), transparent 26%),
+        linear-gradient(180deg, var(--bg-top) 0%, #ecdcca 32%, var(--bg-bottom) 100%);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .grain {
+      position: absolute; inset: 0; opacity: 0.1;
+      background-image:
+        linear-gradient(rgba(90, 67, 63, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(90, 67, 63, 0.2) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply; z-index: 0; pointer-events: none;
+    }
+
+    .hero-section { position: relative; width: 100%; height: 400px; z-index: 1; }
+    .hero-section img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 35.9% 45.8%;
+      filter: saturate(0.85) contrast(1.1) brightness(0.9);
+    }
+    .hero-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, var(--bg-top) 100%);
+      pointer-events: none;
+    }
+
+    .content-wrapper { position: relative; padding: 0 32px 56px; z-index: 2; margin-top: -80px; }
+
+    .header-title { position: relative; margin-bottom: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .mbti-badge {
+      font-family: sans-serif; font-size: 14px; letter-spacing: 4px; font-weight: 900;
+      color: #fff; background: var(--ink); padding: 6px 16px; margin-bottom: 12px;
+      border-radius: 4px; box-shadow: 0 8px 20px rgba(26, 21, 22, 0.2);
+    }
+    .character-name {
+      font-size: 48px; font-weight: 900; letter-spacing: 2px;
+      color: var(--ink); line-height: 1.1;
+      text-shadow: 0 4px 16px rgba(255, 255, 255, 0.9);
+    }
+    .function-stack {
+      font-family: sans-serif; font-size: 13px; letter-spacing: 4px;
+      color: var(--wine); margin-top: 12px; font-weight: 900; text-transform: uppercase;
+    }
+
+    .quote-section { position: relative; margin: 40px 0; padding-left: 24px; border-left: 3px solid var(--gold); }
+    .quote-section p { font-size: 18px; line-height: 1.6; font-style: italic; color: var(--ink); font-weight: 700; letter-spacing: 1px; }
+
+    .summary-section { margin-bottom: 48px; }
+    .summary-bento {
+      position: relative;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2));
+      border-radius: 20px; padding: 28px 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .summary-bento p { font-size: 14.5px; line-height: 1.9; color: #3b3034; text-align: justify; }
+
+    .cognitive-functions { display: flex; flex-direction: column; gap: 36px; padding-left: 24px; }
+    .function-node { position: relative; display: flex; align-items: flex-start; }
+
+    .circle-tag {
+      position: absolute; left: -28px; top: 16px; width: 72px; height: 72px;
+      border-radius: 50%; background: #fdfaf7; border: 3px solid var(--gold);
+      box-shadow: 0 8px 24px rgba(184, 138, 88, 0.25);
+      display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 5;
+    }
+    .circle-tag::after {
+      content: ''; position: absolute; right: -12px; top: 50%; transform: translateY(-50%);
+      width: 12px; height: 3px; background: var(--gold);
+    }
+    .circle-tag .abbr { font-family: sans-serif; font-size: 24px; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 2px; }
+    .circle-tag .role { font-size: 10px; font-weight: 700; color: var(--wine); letter-spacing: 1px; }
+
+    .function-card {
+      width: 100%; margin-left: 24px; padding: 20px 24px 24px 36px;
+      background: var(--card); border-left: 4px solid var(--gold);
+      border-radius: 0 20px 20px 0;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    }
+    .function-card h3 { font-size: 16px; color: var(--ink); margin-bottom: 16px; font-weight: 900; letter-spacing: 1px; }
+
+    .tree-container { position: relative; padding-left: 14px; display: flex; flex-direction: column; gap: 16px; }
+    .tree-container::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+
+    .tree-item { position: relative; line-height: 1.6; }
+    .tree-item::before {
+      content: ''; position: absolute; left: -14px; top: 10px;
+      width: 10px; height: 1px; background: rgba(184, 138, 88, 0.4);
+    }
+    .tree-item::after {
+      content: ''; position: absolute; left: -17.5px; top: 6.5px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); box-shadow: 0 0 6px var(--gold);
+    }
+    .tree-content { font-size: 14px; color: #3b3034; text-align: justify; line-height: 1.75; }
+
+    .tree-summary {
+      position: relative; margin-top: 4px; padding-top: 16px;
+      border-top: 1px dashed rgba(184, 138, 88, 0.4);
+      font-size: 14px; font-weight: 700; color: var(--wine);
+      line-height: 1.75; text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-container">
+    <div class="grain"></div>
+    <div class="hero-section">
+      <img src="file:///Users/russell/Documents/coding_save/indie-project/mbti-operation-space/images/逐玉剧照/宋砚.jpg" alt="宋砚剧照">
+    </div>
+    <div class="content-wrapper">
+      <div class="header-title">
+        <div class="mbti-badge">ISFJ</div>
+        <h1 class="character-name">宋砚</h1>
+        <div class="function-stack">Si - Fe - Ti - Ne</div>
+      </div>
+      <div class="quote-section">
+        <p>「风雨廊亭梦已醒。」</p>
+      </div>
+      <div class="summary-section">
+        <div class="summary-bento">
+          <p>宋砚这种人，你在现实生活里一定见过。他没有胆量去谋财害命，但当你落魄时，他避如蛇蝎、嫌你寒酸；等你一旦得势发达了，他又能毫无芥蒂地凑上前来，满脸堆着陈词滥调的“旧交情”。长玉当街追债那回，他慌乱了一阵子；等长玉拜将封侯，他吓得两股战战；再后来，长玉的眼里早已彻底没有了他这号人物，他便只能瘫坐在酒桌前痛哭流涕。从头到尾，他都在围着别人的变化原地打转，自己却连半步都未曾迈出过。最后丢了官职，坐在酒桌前骂天骂地，骂来骂去，唯独那个最该骂的自己，他永远看不见。</p>
+        </div>
+      </div>
+      <div class="cognitive-functions">
+        
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Si</span>
+            <span class="role">主导</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾感觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">樊家砸锅卖铁供他读书、替他铺路，宋砚将这每一笔恩情都记得清清楚楚，只是，他是当成沉重的债务一笔笔攒着算的。他心里有本界限分明的账：考取功名，就把樊家这页翻篇；</div></div>
+              <div class="tree-item"><div class="tree-content">攀上更高的门第，便另起全新的一页。当长玉当街找他追讨欠债时，他满脸的窘迫与难堪——正因为他对那些卑微的过往记忆太深，一旦被人当众撕开，他便觉得颜面扫地。</div></div>
+              <div class="tree-item"><div class="tree-content">后来在京城混得不上不下，他依然端着当年中举时的那股清高劲儿。</div></div>
+              <div class="tree-summary">他死死攥着“读书人”这三个字作为最后的遮羞布，哪怕早已无人买账。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Fe</span>
+            <span class="role">辅助</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾情感</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">宋砚是活在别人目光里的人。长玉落难时，他假惺惺地登门提出纳妾，场面话说的体面又周全，仿佛自己是来大发慈悲施恩的。</div></div>
+              <div class="tree-item"><div class="tree-content">在长玉的婚礼上，明明正主谢征就站在一旁，他居然还试图上前搭话，浑然不觉自己这副姿态在所有人眼中是何等的可笑滑稽。</div></div>
+              <div class="tree-item"><div class="tree-content">上元节那次重逢亦是如此，他摆出一副旧情难忘的嘴脸，妄图在长玉面前找回一点可怜的道德优越感，结果被旁人三两句话便戳穿了他攀附权贵的真面目。</div></div>
+              <div class="tree-summary">他始终在努力表演一个“得体的读书人”，却未曾发觉，台下早已空无一人。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ti</span>
+            <span class="role">第三</span>
+          </div>
+          <div class="function-card">
+            <h3>内倾思维</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">偶尔，他也会在深夜里为自己的凉薄寻找开脱的逻辑。退婚，他骗自己那是“父母之命难违”；纳妾，他自我催眠这是“给长玉一个安稳的归宿”。</div></div>
+              <div class="tree-item"><div class="tree-content">每走一步，他都给自己编排了一套无懈可击的说辞。然而，这些自欺欺人的借口根本经不起当面对峙。</div></div>
+              <div class="tree-item"><div class="tree-content">面对长玉毫不留情的质问，他根本无言以对，只能靠生硬地转移话题勉强维持体面。</div></div>
+              <div class="tree-summary">他那套虚伪的逻辑，只够骗骗自己，却说服不了任何一个局中人。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="function-node">
+          <div class="circle-tag">
+            <span class="abbr">Ne</span>
+            <span class="role">劣势</span>
+          </div>
+          <div class="function-card">
+            <h3>外倾直觉</h3>
+            <div class="tree-container">
+              <div class="tree-item"><div class="tree-content">被谢征套麻袋暴揍的那一回，是他生平头一次惊觉世道变了，自己招惹了不该招惹的硬茬。可惜，他的清醒并未维持多久。再见长玉时，对方已是手握重兵的将军。</div></div>
+              <div class="tree-item"><div class="tree-content">他吓得双手止不住地颤抖，可心底最刺痛他的，却是长玉那扫过他时连看都懒得多看一眼的漠然。后来被安排去教习礼仪规矩，他勉强支撑了一段时日便原形毕露，最终被罢免职务。</div></div>
+              <div class="tree-item"><div class="tree-content">他独自在酒馆里喝着闷酒，嘴里翻来覆去地怨恨老天不公，从头到尾都未曾反思过，问题究竟出在哪里。</div></div>
+              <div class="tree-summary">世道早已翻覆了几轮，他却始终困在当年那个自欺欺人的泥潭里。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

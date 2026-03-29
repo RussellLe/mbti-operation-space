@@ -1,3 +1,4 @@
 images/
 posters/
 .playwright-mcp/
+node_modules/
